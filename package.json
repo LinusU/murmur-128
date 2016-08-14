@@ -1,0 +1,17 @@
+{
+  "name": "murmur",
+  "version": "0.0.0",
+  "license": "MIT",
+  "repository": "LinusU/murmur128",
+  "scripts": {
+    "test": "standard && node test"
+  },
+  "dependencies": {
+    "imul": "^1.0.0"
+  },
+  "devDependencies": {
+    "arraybuffer-equal": "^1.0.4",
+    "hex-to-array-buffer": "^0.1.0",
+    "standard": "^7.1.2"
+  }
+}
