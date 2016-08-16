@@ -1,8 +1,8 @@
 {
-  "name": "murmur128",
+  "name": "murmur-128",
   "version": "0.1.0",
   "license": "MIT",
-  "repository": "LinusU/murmur128",
+  "repository": "LinusU/murmur-128",
   "scripts": {
     "test": "standard && node test"
   },

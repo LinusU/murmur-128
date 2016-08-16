@@ -5,13 +5,13 @@ MurmurHash3 x86 128-bit implemented in JavaScript.
 ## Installation
 
 ```sh
-npm install --save murmur128
+npm install --save murmur-128
 ```
 
 ## Usage
 
 ```js
-const murmur128 = require('murmur128')
+const murmur128 = require('murmur-128')
 
 murmur128('linus')
 //=> ArrayBuffer { 16 }
