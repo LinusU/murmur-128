@@ -1,4 +1,6 @@
 var imul = require('imul')
+var fmix = require('fmix')
+var arrayBufferFromString = require('array-buffer-from-string')
 
 var C = new Uint32Array([
   0x239b961b,
@@ -7,30 +9,8 @@ var C = new Uint32Array([
   0xa1e38b93
 ])
 
-function arrayBufferFromString (input) {
-  var length = input.length
-  var buffer = new ArrayBuffer(length * 2)
-  var view = new Uint16Array(buffer)
-
-  for (var i = 0; i < length; i++) {
-    view[i] = input.charCodeAt(i)
-  }
-
-  return buffer
-}
-
 function rotl (m, n) {
   return (m << n) | (m >>> (32 - n))
-}
-
-function fmix (h) {
-  h ^= (h >>> 16)
-  h = imul(h, 0x85ebca6b)
-  h ^= (h >>> 13)
-  h = imul(h, 0xc2b2ae35)
-  h ^= (h >>> 16)
-
-  return h
 }
 
 function body (key, hash) {
