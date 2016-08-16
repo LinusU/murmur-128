@@ -28,3 +28,7 @@ Compute the 128-bit MurmurHash3 of the supplied `key`. If the `key` is given as
 string the [raw bytes that it occupies][javascript-encoding] will be used.
 
 [javascript-encoding]: https://mathiasbynens.be/notes/javascript-encoding
+
+## See also
+
+- [murmur-32](https://github.com/LinusU/murmur-32) - MurmurHash3 x86 32-bit implemented in JavaScript
