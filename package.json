@@ -15,5 +15,16 @@
     "arraybuffer-equal": "^1.0.4",
     "hex-to-array-buffer": "^0.1.0",
     "standard": "^7.1.2"
-  }
+  },
+  "keywords": [
+    "digest",
+    "fast",
+    "hash",
+    "murmur hash",
+    "murmur",
+    "murmur3",
+    "murmurhash",
+    "murmurhash3",
+    "quick"
+  ]
 }
