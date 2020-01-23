@@ -78,7 +78,7 @@ function tail (key, hash) {
 
       k[3] = imul(k[3], C[3])
       k[3] = rotl(k[3], 18)
-      k[3] = imul(k[3], C[1])
+      k[3] = imul(k[3], C[0])
       hash[3] = (hash[3] ^ k[3])
       // fallthrough
     case 12:
