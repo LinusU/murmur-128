@@ -1,6 +1,6 @@
 var imul = require('imul')
 var fmix = require('fmix')
-var arrayBufferFromString = require('array-buffer-from-string')
+var encodeUtf8 = require('encode-utf8')
 
 var C = new Uint32Array([
   0x239b961b,
@@ -166,7 +166,7 @@ module.exports = function murmur (key, seed) {
   seed = (seed ? (seed | 0) : 0)
 
   if (typeof key === 'string') {
-    key = arrayBufferFromString(key)
+    key = encodeUtf8(key)
   }
 
   if (!(key instanceof ArrayBuffer)) {
