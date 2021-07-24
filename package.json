@@ -1,6 +1,6 @@
 {
   "name": "murmur-128",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "license": "MIT",
   "repository": "LinusU/murmur-128",
   "type": "module",
