@@ -1,8 +1,7 @@
-var imul = require('imul')
-var fmix = require('fmix')
-var encodeUtf8 = require('encode-utf8')
+import encodeUtf8 from 'encode-utf8'
+import fmix from 'fmix'
 
-var C = new Uint32Array([
+const C = new Uint32Array([
   0x239b961b,
   0xab0e9789,
   0x38b34ae5,
@@ -14,57 +13,56 @@ function rotl (m, n) {
 }
 
 function body (key, hash) {
-  var blocks = (key.byteLength / 16) | 0
-  var view32 = new Uint32Array(key, 0, blocks * 4)
+  const blocks = (key.byteLength / 16) | 0
+  const view32 = new Uint32Array(key, 0, blocks * 4)
 
-  var k
-  for (var i = 0; i < blocks; i++) {
-    k = view32.subarray(i * 4, (i + 1) * 4)
+  for (let i = 0; i < blocks; i++) {
+    const k = view32.subarray(i * 4, (i + 1) * 4)
 
-    k[0] = imul(k[0], C[0])
+    k[0] = Math.imul(k[0], C[0])
     k[0] = rotl(k[0], 15)
-    k[0] = imul(k[0], C[1])
+    k[0] = Math.imul(k[0], C[1])
 
     hash[0] = (hash[0] ^ k[0])
     hash[0] = rotl(hash[0], 19)
     hash[0] = (hash[0] + hash[1])
-    hash[0] = imul(hash[0], 5) + 0x561ccd1b
+    hash[0] = Math.imul(hash[0], 5) + 0x561ccd1b
 
-    k[1] = imul(k[1], C[1])
+    k[1] = Math.imul(k[1], C[1])
     k[1] = rotl(k[1], 16)
-    k[1] = imul(k[1], C[2])
+    k[1] = Math.imul(k[1], C[2])
 
     hash[1] = (hash[1] ^ k[1])
     hash[1] = rotl(hash[1], 17)
     hash[1] = (hash[1] + hash[2])
-    hash[1] = imul(hash[1], 5) + 0x0bcaa747
+    hash[1] = Math.imul(hash[1], 5) + 0x0bcaa747
 
-    k[2] = imul(k[2], C[2])
+    k[2] = Math.imul(k[2], C[2])
     k[2] = rotl(k[2], 17)
-    k[2] = imul(k[2], C[3])
+    k[2] = Math.imul(k[2], C[3])
 
     hash[2] = (hash[2] ^ k[2])
     hash[2] = rotl(hash[2], 15)
     hash[2] = (hash[2] + hash[3])
-    hash[2] = imul(hash[2], 5) + 0x96cd1c35
+    hash[2] = Math.imul(hash[2], 5) + 0x96cd1c35
 
-    k[3] = imul(k[3], C[3])
+    k[3] = Math.imul(k[3], C[3])
     k[3] = rotl(k[3], 18)
-    k[3] = imul(k[3], C[0])
+    k[3] = Math.imul(k[3], C[0])
 
     hash[3] = (hash[3] ^ k[3])
     hash[3] = rotl(hash[3], 13)
     hash[3] = (hash[3] + hash[0])
-    hash[3] = imul(hash[3], 5) + 0x32ac3b17
+    hash[3] = Math.imul(hash[3], 5) + 0x32ac3b17
   }
 }
 
 function tail (key, hash) {
-  var blocks = (key.byteLength / 16) | 0
-  var reminder = (key.byteLength % 16)
+  const blocks = (key.byteLength / 16) | 0
+  const reminder = (key.byteLength % 16)
 
-  var k = new Uint32Array(4)
-  var tail = new Uint8Array(key, blocks * 16, reminder)
+  const k = new Uint32Array(4)
+  const tail = new Uint8Array(key, blocks * 16, reminder)
 
   switch (reminder) {
     case 15:
@@ -76,9 +74,9 @@ function tail (key, hash) {
     case 13:
       k[3] = (k[3] ^ (tail[12] << 0))
 
-      k[3] = imul(k[3], C[3])
+      k[3] = Math.imul(k[3], C[3])
       k[3] = rotl(k[3], 18)
-      k[3] = imul(k[3], C[0])
+      k[3] = Math.imul(k[3], C[0])
       hash[3] = (hash[3] ^ k[3])
       // fallthrough
     case 12:
@@ -93,9 +91,9 @@ function tail (key, hash) {
     case 9:
       k[2] = (k[2] ^ (tail[8] << 0))
 
-      k[2] = imul(k[2], C[2])
+      k[2] = Math.imul(k[2], C[2])
       k[2] = rotl(k[2], 17)
-      k[2] = imul(k[2], C[3])
+      k[2] = Math.imul(k[2], C[3])
       hash[2] = (hash[2] ^ k[2])
       // fallthrough
     case 8:
@@ -110,9 +108,9 @@ function tail (key, hash) {
     case 5:
       k[1] = (k[1] ^ (tail[4] << 0))
 
-      k[1] = imul(k[1], C[1])
+      k[1] = Math.imul(k[1], C[1])
       k[1] = rotl(k[1], 16)
-      k[1] = imul(k[1], C[2])
+      k[1] = Math.imul(k[1], C[2])
       hash[1] = (hash[1] ^ k[1])
       // fallthrough
     case 4:
@@ -127,9 +125,9 @@ function tail (key, hash) {
     case 1:
       k[0] = (k[0] ^ (tail[0] << 0))
 
-      k[0] = imul(k[0], C[0])
+      k[0] = Math.imul(k[0], C[0])
       k[0] = rotl(k[0], 15)
-      k[0] = imul(k[0], C[1])
+      k[0] = Math.imul(k[0], C[1])
       hash[0] = (hash[0] ^ k[0])
   }
 }
@@ -162,7 +160,7 @@ function finalize (key, hash) {
   hash[3] = (hash[3] + hash[0]) | 0
 }
 
-module.exports = function murmur (key, seed) {
+export default function murmur (key, seed) {
   seed = (seed ? (seed | 0) : 0)
 
   if (typeof key === 'string') {
@@ -173,7 +171,7 @@ module.exports = function murmur (key, seed) {
     throw new TypeError('Expected key to be ArrayBuffer or string')
   }
 
-  var hash = new Uint32Array([seed, seed, seed, seed])
+  const hash = new Uint32Array([seed, seed, seed, seed])
 
   body(key, hash)
   tail(key, hash)
