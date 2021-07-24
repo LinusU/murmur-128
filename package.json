@@ -3,18 +3,20 @@
   "version": "0.2.1",
   "license": "MIT",
   "repository": "LinusU/murmur-128",
+  "type": "module",
+  "exports": "./index.js",
   "scripts": {
-    "test": "standard && node test"
+    "test": "standard && node test && ts-readme-generator --check"
   },
   "dependencies": {
-    "encode-utf8": "^1.0.2",
-    "fmix": "^0.1.0",
-    "imul": "^1.0.0"
+    "encode-utf8": "^2.0.0",
+    "fmix": "^1.0.0"
   },
   "devDependencies": {
     "arraybuffer-equal": "^1.0.4",
-    "hex-to-array-buffer": "^1.1.0",
-    "standard": "^14.3.1"
+    "hex-to-array-buffer": "^2.0.0",
+    "standard": "^16.0.3",
+    "ts-readme-generator": "^0.5.1"
   },
   "keywords": [
     "digest",
@@ -26,5 +28,8 @@
     "murmurhash",
     "murmurhash3",
     "quick"
-  ]
+  ],
+  "engines": {
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+  }
 }

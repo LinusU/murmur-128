@@ -11,7 +11,7 @@ npm install --save murmur-128
 ## Usage
 
 ```js
-const murmur128 = require('murmur-128')
+import murmur128 from 'murmur-128'
 
 murmur128('linus')
 //=> ArrayBuffer { 16 }
@@ -22,10 +22,12 @@ murmur128(new ArrayBuffer(10))
 
 ## API
 
-### murmur128(key: ArrayBuffer | string) => ArrayBuffer
+### `murmur128(key)`
 
-Compute the 128-bit MurmurHash3 of the supplied `key`. If the `key` is given as
-string it will be [encoded using the UTF8 encoding](https://github.com/LinusU/encode-utf8).
+- `key` (`ArrayBuffer | string`, required)
+- returns `ArrayBuffer`
+
+Compute the 128-bit MurmurHash3 of the supplied `key`. If the `key` is given as a string it will be [encoded using the UTF8 encoding](https://github.com/LinusU/encode-utf8).
 
 ## See also
 
